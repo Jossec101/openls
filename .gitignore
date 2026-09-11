@@ -1,0 +1,11 @@
+# build output
+bin/
+obj/
+publish/
+*.user
+*.suo
+.vs/
+
+# never ship the engine or anything from the install directory
+Lossless.dll
+*.pdb

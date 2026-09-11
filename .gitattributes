@@ -1,0 +1,6 @@
+* text=auto
+*.cs text
+*.csproj text
+*.md text
+*.manifest text
+justfile text
