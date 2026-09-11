@@ -60,7 +60,7 @@ uninstall-startup: publish
 
 # show the current run-at-sign-in entry, if any
 startup-status:
-    $v = (Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -ErrorAction SilentlyContinue).{{project}}; if ($v) { "registered: $v" } else { "not registered" }
+    @$v = (Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -ErrorAction SilentlyContinue).{{project}}; if ($v) { "registered: $v" } else { "not registered" }
 
 # delete build output
 clean:
