@@ -57,7 +57,7 @@ Displays (displayId):
 FPS: ETW session live (window 5s). real = the captured game's process, generated = this process.
 auto-fg: LSFG3 adaptive@144 while source >= 60 fps, else fixed x2 (x3 when x3 fits under the target) | band +/-5 fps, dwell 20s
 hotkey engine: RegisterHotKey - active: Ctrl+Alt+S
-default profile: scale x1.5 | type off (raw scale) | LSFG3 adaptive (target 144, multiplier x2) | sync default | gsync true | capture WGC | fps counter true | gpu 0 display 0
+default profile: scale x1.5 | type off (raw scale) | LSFG3 adaptive (target 144, multiplier x2) | sync default | gsync true | capture WGC | hdr true | fps counter true | gpu 0 display 0
 applying DEFAULT profile, activating on focused window (Game)
 [cb] status=2 hwnd=20492 3840x2076->3840x2076 resized=False scale=1.000 err=0
 SCALING "Game": 3840x2076 -> 3840x2076 x1.00
@@ -87,6 +87,7 @@ elevation), so it also appears under **Task Manager > Startup apps**.
 | `--dll <path>` | Explicit `Lossless.dll` |
 | `--hotkey <combo>` | e.g. `Ctrl+Alt+S` (default), `Alt+P`, `F8` |
 | `--capture <dxgi\|wgc\|gdi>` | Capture API handed to the core (default `wgc`). GDI exists in the core's enum but the app never offers it |
+| `--hdr` / `--no-hdr` | The app's "HDR support" toggle (default **on** here; the app ships it off, `--no-hdr` restores that). Needed when the game and monitor output HDR, and with DXGI capture under Windows 11 "Automatically manage color for apps". Uses more VRAM |
 | `--install-startup` | Register this exe with every other flag on the line, plus `--minimized`, to run at sign-in; exit |
 | `--uninstall-startup` | Remove that registration; exit |
 | `--minimized` | Start with the console window minimised |
@@ -105,10 +106,10 @@ elevation), so it also appears under **Task Manager > Startup apps**.
 | `--fg-band <fps>` | Hysteresis band (default 5) |
 | `--fg-dwell <s>` | Minimum seconds between switches (default 20) |
 
-The profile applied is the app's stock default with one change, the capture
-API: x1.5 scale, fullscreen fit, scaling type off, LSFG3 adaptive to 144 (x2
-fixed fallback), sync default, G-Sync on, **WGC** capture, FPS counter on, GPU
-and display 0. `--capture dxgi` gives you the app's own default. The full
+The profile applied is the app's stock default with two changes, the capture
+API and HDR support: x1.5 scale, fullscreen fit, scaling type off, LSFG3 adaptive to 144 (x2
+fixed fallback), sync default, G-Sync on, **WGC** capture, **HDR on**, FPS counter on, GPU
+and display 0. `--capture dxgi --no-hdr` gives you the app's own default. The full
 mapping is in `openls/Profile.cs`.
 
 ## How it works
