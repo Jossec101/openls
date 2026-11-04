@@ -822,11 +822,12 @@ public static class Program
             "  --capture <api>    capture API: wgc (default), dxgi, or gdi. WGC output can be recorded\n" +
             "                     by any software and is colour-managed by Windows 11's auto colour\n" +
             "                     management; DXGI needs OBS game capture and the HDR option instead\n" +
-            "  --hdr              HDR support (the app's \"HDR support\" toggle, off by default).\n" +
+            "  --hdr              HDR support (the app's \"HDR support\" toggle). ON by default;\n" +
+            "                     the original app ships it off\n" +
             "                     Required when the game and monitor output HDR, and with DXGI\n" +
             "                     capture under Windows 11 'Automatically manage color for apps'.\n" +
             "                     Uses more VRAM\n" +
-            "  --no-hdr           turn it off (the default)\n" +
+            "  --no-hdr           turn it off, as the original app does. Saves VRAM on SDR setups\n" +
             "\n" +
             "Run at sign-in (HKCU\\...\\CurrentVersion\\Run, no elevation needed):\n" +
             "  --install-startup  register this exe with every OTHER flag on this command line, plus\n" +

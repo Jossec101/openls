@@ -49,7 +49,8 @@ public sealed class Profile
     public int CropBottom { get; set; }
     public bool MultiDisplayMode { get; set; }
 
-    /// <summary>Defaults identical to the installed app's first profile (Settings.xml).</summary>
+    /// <summary>Defaults identical to the installed app's first profile (Settings.xml),
+    /// except CaptureApi (WGC) and Hdr (on).</summary>
     public static Profile Default() => new()
     {
         Title = "Default",
@@ -78,7 +79,7 @@ public sealed class Profile
         SyncMode = 1,               // DEFAULT
         MaxFrameLatency = 3,
         Gsync = true,
-        Hdr = false,
+        Hdr = true,                 // HDR support on (the original ships it off; --no-hdr restores that)
         DrawFps = true,
         CaptureApi = 1,             // WGC (the original ships DXGI; see ParseCaptureApi)
         QueueTarget = 1,
