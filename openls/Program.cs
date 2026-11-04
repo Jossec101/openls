@@ -59,6 +59,8 @@ public static class Program
                     _profile.CaptureApi = api.Value;
                     break;
                 }
+                case "--hdr": _profile.Hdr = true; break;
+                case "--no-hdr": _profile.Hdr = false; break;
                 case "--self-test":
                     // optional value: delay ms before injecting the synthetic hotkey
                     if (i + 1 < args.Length && int.TryParse(args[i + 1], out int ms) && ms >= 0) { i++; selfTestDelay = ms; }
@@ -741,6 +743,7 @@ public static class Program
             + " | sync " + syncName
             + " | gsync " + p.Gsync.ToString().ToLowerInvariant()
             + " | capture " + captureName
+            + " | hdr " + p.Hdr.ToString().ToLowerInvariant()
             + " | fps counter " + p.DrawFps.ToString().ToLowerInvariant()
             + " | gpu " + p.GpuId + " display " + p.DisplayId;
     }
@@ -819,6 +822,11 @@ public static class Program
             "  --capture <api>    capture API: wgc (default), dxgi, or gdi. WGC output can be recorded\n" +
             "                     by any software and is colour-managed by Windows 11's auto colour\n" +
             "                     management; DXGI needs OBS game capture and the HDR option instead\n" +
+            "  --hdr              HDR support (the app's \"HDR support\" toggle, off by default).\n" +
+            "                     Required when the game and monitor output HDR, and with DXGI\n" +
+            "                     capture under Windows 11 'Automatically manage color for apps'.\n" +
+            "                     Uses more VRAM\n" +
+            "  --no-hdr           turn it off (the default)\n" +
             "\n" +
             "Run at sign-in (HKCU\\...\\CurrentVersion\\Run, no elevation needed):\n" +
             "  --install-startup  register this exe with every OTHER flag on this command line, plus\n" +
